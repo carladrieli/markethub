@@ -1,22 +1,55 @@
-<script setup>
-defineProps({
-  msg: {
-    type: String,
-    required: true
-  }
-})
-</script>
-
 <template>
   <div class="greetings">
     <h1 class="green">{{ msg }}</h1>
     <h3>
-      You’ve successfully created a project with
+      <!-- You’ve successfully created a project with
       <a href="https://vitejs.dev/" target="_blank" rel="noopener">Vite</a> +
-      <a href="https://vuejs.org/" target="_blank" rel="noopener">Vue 3</a>.
+      <a href="https://vuejs.org/" target="_blank" rel="noopener">Vue 3</a>. -->
+      {{ response }}
     </h3>
   </div>
 </template>
+
+<script>
+
+import axios from 'axios';
+
+// defineProps({
+//   msg: {
+//     type: String,
+//     required: true
+//   }
+// })
+
+export default {
+  name: "HelloWorld",
+  components: { },
+  mixins: [],
+  data() {
+    return { 
+      response: [],
+    }
+  },
+  created() {
+  },
+  methods: {
+    openInNewTab(url) {
+      window.open(url, '_blank', 'noreferrer');
+    },
+    getAxios() {
+      axios.get('http://127.0.0.1:8000/api/categoria-estabelecimento/')
+      .then((response) => {
+        this.response = response.data.map(objeto => objeto.nome);
+      })
+    }
+  },
+  mounted() {
+    this.getAxios();
+  }
+}
+</script>
+
+
 
 <style scoped>
 h1 {

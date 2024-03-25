@@ -55,7 +55,13 @@ class CategoriaEstabelecimentoController extends Controller
      */
     public function update(UpdateCategoriaEstabelecimentoRequest $request, CategoriaEstabelecimento $categoriaEstabelecimento)
     {
-        //
+        print_r($request->all());
+        echo '---';
+        print_r($categoriaEstabelecimento->getAttributes());
+
+        $categoriaEstabelecimento->update($request->all());
+
+        return $categoriaEstabelecimento;
     }
 
     /**
@@ -63,6 +69,7 @@ class CategoriaEstabelecimentoController extends Controller
      */
     public function destroy(CategoriaEstabelecimento $categoriaEstabelecimento)
     {
-        //
+        $categoriaEstabelecimento->delete();
+        return ['msg' => 'Categoria removida com sucesso!'];
     }
 }
