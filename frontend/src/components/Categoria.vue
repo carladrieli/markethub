@@ -8,11 +8,7 @@
             </div>
             <button type="submit" class="btn btn-primary">Adicionar Item</button>
         </form>
-        <!-- Lista de itens -->
-        <!-- <ul class="list-group mt-3">
-        <li v-for="(item, index) in items" :key="index" class="list-group-item">{{ item }}</li>
-      </ul> -->
-
+        
         <br />
 
         <table class="table">
@@ -25,11 +21,32 @@
                 <tr v-for="(item, index) in items" :key="index">
                     <td>{{ item.nome }}</td>
                     <td>
+                        <button class="btn btn-primary" @click="abrirModal(item)">Atualizar</button>
                         <button class="btn btn-danger" @click="deleteItem(item.id)">Deletar</button>
                     </td>
                 </tr>
             </tbody>
         </table>
+
+        <!-- Modal para atualizar categoria -->
+        <div class="modal" id="modalAtualizar" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Atualizar Categoria</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="text" class="form-control">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                        <button type="button" class="btn btn-primary" @click="atualizarCategoria()">Salvar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 </template>
 
@@ -72,6 +89,11 @@ export default {
                 });
         }
 
+        function abrirModal(categoria) {
+            this.categoriaSelecionada = { ...categoria }; // Copia os dados da categoria selecionada para a categoriaSelecionada
+            new bootstrap.Modal(document.getElementById('modalAtualizar')).show();
+        }
+
         //Deletar item
         function deleteItem(itemId) {            
             axios.delete('http://127.0.0.1:8000/api/categoria-estabelecimento/' + itemId)
@@ -90,6 +112,7 @@ export default {
             items,
             addItem,
             fetchItems,
+            abrirModal,
             deleteItem
         };
     }
