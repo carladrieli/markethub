@@ -9,6 +9,10 @@ import CategProdutoView from '../views/CategProdutos/View.vue'
 import CategProdutoCreate from '../views/CategProdutos/Create.vue'
 import CategProdutoEdit from '../views/CategProdutos/Edit.vue'
 
+import ClienteView from '../views/Clientes/View.vue'
+import ClienteCreate from '../views/Clientes/Create.vue'
+import ClienteEdit from '../views/Clientes/Edit.vue'
+
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -57,6 +61,22 @@ const router = createRouter({
       path: '/categ-produtos/:id/edit',
       name: 'categProdutosEdit',
       component: CategProdutoEdit
+    },
+
+    {
+      path: '/cliente',
+      name: 'cliente',
+      component: ClienteView
+    },
+    {
+      path: '/cliente/create',
+      name: 'clienteCreate',
+      component: ClienteCreate
+    },
+    {
+      path: '/cliente/:id/edit',
+      name: 'clienteEdit',
+      component: ClienteEdit
     },
   ]
 })

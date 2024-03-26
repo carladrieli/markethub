@@ -30,7 +30,7 @@ import HelloWorld from './components/HelloWorld.vue'
                 <RouterLink class="nav-link active" to="/">Produtos</RouterLink>
               </li> 
               <li class="nav-item">
-                <RouterLink class="nav-link active" to="/">Clientes</RouterLink>
+                <RouterLink class="nav-link active" to="/cliente">Clientes</RouterLink>
               </li>     
               <li class="nav-item">
                 <RouterLink class="nav-link active" to="/">Pedidos</RouterLink>
