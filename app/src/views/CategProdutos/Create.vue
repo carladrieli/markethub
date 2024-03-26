@@ -3,7 +3,7 @@
     <div class="container mt-5">
         <div class="card">
             <div class="card-header">
-                <h4>Adicionar Categoria de Estabelecimentos</h4>
+                <h4>Adicionar Categoria de Produtos</h4>
             </div>
             <div class="card-body">
 
@@ -15,7 +15,7 @@
 
                 <div class="mb-3">
                     <label for="">Nome</label>
-                    <input type="text" v-model="model.categEstabelecimento.nome" class="form-control">
+                    <input type="text" v-model="model.categProduto.nome" class="form-control">
                 </div>
                 <div class="mb-3">
                     <button type="button" @click="salvarCategoria" class="btn btn-success">Salvar</button>
@@ -29,12 +29,12 @@
 import axios from 'axios'
 
 export default {
-    name: 'categ-estabelecimentos-create',
+    name: 'categ-produtos-create',
     data() {
         return {
             errorList: '',
             model: {
-                categEstabelecimento: {
+                categProduto: {
                     nome: ''
                 }
             }
@@ -44,15 +44,15 @@ export default {
         salvarCategoria() {
             var mythis = this;
 
-            axios.post('http://127.0.0.1:8000/api/categoria-estabelecimento', this.model.categEstabelecimento)
+            axios.post('http://127.0.0.1:8000/api/categoria-produto', this.model.categProduto)
                 .then(res => {                    
                     alert('Adicionado com sucesso!');
 
-                    this.model.categEstabelecimento = {
+                    this.model.categProduto = {
                         nome: ''
                     }
                     this.errorList = '';
-                    this.$router.push({ path: '/categ-estabelecimentos' });
+                    this.$router.push({ path: '/categ-produtos' });
                 })
                 .catch(function (error) {
                     if (error.response) {

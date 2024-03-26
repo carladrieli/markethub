@@ -1,7 +1,8 @@
 
 <template>
   <main>
-    <h1>This is Home Page</h1>
-
+    <div class="container">
+      <h1>MarketHub</h1>
+    </div>    
   </main>
 </template>

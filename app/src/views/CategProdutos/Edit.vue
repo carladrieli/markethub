@@ -3,7 +3,7 @@
     <div class="container mt-5">
         <div class="card">
             <div class="card-header">
-                <h4>Adicionar Categoria de Estabelecimentos</h4>
+                <h4>Editar Categoria de Produtos</h4>
             </div>
             <div class="card-body">
 
@@ -15,7 +15,7 @@
 
                 <div class="mb-3">
                     <label for="">Nome</label>
-                    <input type="text" v-model="model.categEstabelecimento.nome" class="form-control">
+                    <input type="text" v-model="model.categProduto.nome" class="form-control">
                 </div>
                 <div class="mb-3">
                     <button type="button" @click="salvarCategoria" class="btn btn-success">Salvar</button>
@@ -29,30 +29,43 @@
 import axios from 'axios'
 
 export default {
-    name: 'categ-estabelecimentos-create',
+    name: 'categ-produtos-edit',
     data() {
         return {
+            categId: '',
             errorList: '',
             model: {
-                categEstabelecimento: {
+                categProduto: {
                     nome: ''
                 }
             }
         }
     },
+    mounted(){
+
+        this.categId = this.$route.params.id;
+        this.getCategProdutoData(this.$route.params.id);
+
+    },
     methods: {
+
+        getCategProdutoData(categId){
+            axios.get(`http://127.0.0.1:8000/api/categoria-produto/${categId}/edit`)
+            .then(res => {
+                console.log(res.data);
+                this.model.categProduto = res.data;
+            })
+        },
+
         salvarCategoria() {
             var mythis = this;
 
-            axios.post('http://127.0.0.1:8000/api/categoria-estabelecimento', this.model.categEstabelecimento)
+            axios.put(`http://127.0.0.1:8000/api/categoria-produto/${this.categId}/edit`, this.model.categProduto)
                 .then(res => {                    
-                    alert('Adicionado com sucesso!');
+                    alert('Alterado com sucesso!');
 
-                    this.model.categEstabelecimento = {
-                        nome: ''
-                    }
                     this.errorList = '';
-                    this.$router.push({ path: '/categ-estabelecimentos' });
+                    this.$router.push({ path: '/categ-produtos' });
                 })
                 .catch(function (error) {
                     if (error.response) {

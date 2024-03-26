@@ -3,7 +3,7 @@
     <div class="container mt-5">
         <div class="card">
             <div class="card-header">
-                <h4>Adicionar Categoria de Estabelecimentos</h4>
+                <h4>Editar Categoria de Estabelecimentos</h4>
             </div>
             <div class="card-body">
 
@@ -29,9 +29,10 @@
 import axios from 'axios'
 
 export default {
-    name: 'categ-estabelecimentos-create',
+    name: 'categ-estabelecimentos-edit',
     data() {
         return {
+            categId: '',
             errorList: '',
             model: {
                 categEstabelecimento: {
@@ -40,17 +41,29 @@ export default {
             }
         }
     },
+    mounted(){
+
+        this.categId = this.$route.params.id;
+        this.getCategEstabelecimentoData(this.$route.params.id);
+
+    },
     methods: {
+
+        getCategEstabelecimentoData(categId){
+            axios.get(`http://127.0.0.1:8000/api/categoria-estabelecimento/${categId}/edit`)
+            .then(res => {
+                console.log(res.data);
+                this.model.categEstabelecimento = res.data;
+            })
+        },
+
         salvarCategoria() {
             var mythis = this;
 
-            axios.post('http://127.0.0.1:8000/api/categoria-estabelecimento', this.model.categEstabelecimento)
+            axios.put(`http://127.0.0.1:8000/api/categoria-estabelecimento/${this.categId}/edit`, this.model.categEstabelecimento)
                 .then(res => {                    
-                    alert('Adicionado com sucesso!');
+                    alert('Alterado com sucesso!');
 
-                    this.model.categEstabelecimento = {
-                        nome: ''
-                    }
                     this.errorList = '';
                     this.$router.push({ path: '/categ-estabelecimentos' });
                 })

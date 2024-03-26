@@ -1,7 +1,14 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+
 import CategEstabelecimentoView from '../views/CategEstabelecimentos/View.vue'
 import CategEstabelecimentoCreate from '../views/CategEstabelecimentos/Create.vue'
+import CategEstabelecimentoEdit from '../views/CategEstabelecimentos/Edit.vue'
+
+import CategProdutoView from '../views/CategProdutos/View.vue'
+import CategProdutoCreate from '../views/CategProdutos/Create.vue'
+import CategProdutoEdit from '../views/CategProdutos/Edit.vue'
+
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -19,6 +26,7 @@ const router = createRouter({
       // which is lazy-loaded when the route is visited.
       component: () => import('../views/AboutView.vue')
     },
+
     {
       path: '/categ-estabelecimentos',
       name: 'categEstabelecimentos',
@@ -28,7 +36,28 @@ const router = createRouter({
       path: '/categ-estabelecimentos/create',
       name: 'categEstabelecimentosCreate',
       component: CategEstabelecimentoCreate
-    }
+    },
+    {
+      path: '/categ-estabelecimentos/:id/edit',
+      name: 'categEstabelecimentosEdit',
+      component: CategEstabelecimentoEdit
+    },  
+    
+    {
+      path: '/categ-produtos',
+      name: 'categProdutos',
+      component: CategProdutoView
+    },
+    {
+      path: '/categ-produtos/create',
+      name: 'categProdutosCreate',
+      component: CategProdutoCreate
+    },
+    {
+      path: '/categ-produtos/:id/edit',
+      name: 'categProdutosEdit',
+      component: CategProdutoEdit
+    },
   ]
 })
 

@@ -2,18 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\CategoriaEstabelecimento;
-use App\Http\Requests\StoreCategoriaEstabelecimentoRequest;
-use App\Http\Requests\UpdateCategoriaEstabelecimentoRequest;
+use App\Models\CategoriaProduto;
+use Illuminate\Http\Request;
 
-class CategoriaEstabelecimentoController extends Controller
+class CategoriaProdutoController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $categs = CategoriaEstabelecimento::all();
+        $categs = CategoriaProduto::all();
         return $categs;
     }
 
@@ -28,9 +27,9 @@ class CategoriaEstabelecimentoController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreCategoriaEstabelecimentoRequest $request)
+    public function store(Request $request)
     {
-        $categ = CategoriaEstabelecimento::create($request->all());
+        $categ = CategoriaProduto::create($request->all());
         return $categ;
     }
 
@@ -39,7 +38,7 @@ class CategoriaEstabelecimentoController extends Controller
      */
     public function show($id)
     {
-        $categ = CategoriaEstabelecimento::find($id);
+        $categ = CategoriaProduto::find($id);
         return $categ;
     }
 
@@ -48,16 +47,16 @@ class CategoriaEstabelecimentoController extends Controller
      */
     public function edit($id)
     {
-        $categ = CategoriaEstabelecimento::find($id);
+        $categ = CategoriaProduto::find($id);
         return $categ;
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateCategoriaEstabelecimentoRequest $request, int $id)
+    public function update(Request $request, int $id)
     {
-        $categ = CategoriaEstabelecimento::find($id);
+        $categ = CategoriaProduto::find($id);
         $categ->update($request->all());
 
         return $categ;
@@ -68,7 +67,7 @@ class CategoriaEstabelecimentoController extends Controller
      */
     public function destroy($id)
     {
-        $categ = CategoriaEstabelecimento::find($id);
+        $categ = CategoriaProduto::find($id);
         if($categ){
             $categ->delete();
 

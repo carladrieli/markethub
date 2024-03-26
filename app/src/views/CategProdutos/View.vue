@@ -3,8 +3,8 @@
         <div class="card">
             <div class="card-header">
                 <h4>
-                    Categorias de Estabelecimentos
-                    <RouterLink to="/categ-estabelecimentos/create" class="btn btn-success float-end">
+                    Categorias de Produtos
+                    <RouterLink to="/categ-produtos/create" class="btn btn-success float-end">
                         Adicionar
                     </RouterLink>
                 </h4>
@@ -17,16 +17,16 @@
                             <th class="text-end"></th>
                         </tr>
                     </thead>
-                    <tbody v-if="this.categEstabelecimentos.length > 0">
-                        <tr v-for="(categEstabelecimento, index) in this.categEstabelecimentos" :key="index">
-                            <td>{{ categEstabelecimento.nome }}</td>
+                    <tbody v-if="this.categProdutos.length > 0">
+                        <tr v-for="(categProduto, index) in this.categProdutos" :key="index">
+                            <td>{{ categProduto.nome }}</td>
                             <td class="text-end">
                                 <RouterLink
-                                    :to="{ path: '/categ-estabelecimentos/' + categEstabelecimento.id + '/edit' }"
+                                    :to="{ path: '/categ-produtos/' + categProduto.id + '/edit' }"
                                     class="btn btn-primary mx-2">
                                     Editar
                                 </RouterLink>
-                                <button type="button" @click="excluirCategEstabelecimento(categEstabelecimento.id)"
+                                <button type="button" @click="excluirCategProduto(categProduto.id)"
                                     class="btn btn-danger mx-2">
                                     Excluir
                                 </button>
@@ -48,31 +48,31 @@
 import axios from 'axios'
 
 export default {
-    name: 'categ-estabelecimentos',
+    name: 'categ-produtos',
     data() {
         return {
-            categEstabelecimentos: []
+            categProdutos: []
         }
     },
     mounted() {
-        this.getCategEstabelecimentos();
+        this.getCategProdutos();
     },
     methods: {
-        getCategEstabelecimentos() {
-            axios.get('http://127.0.0.1:8000/api/categoria-estabelecimento').then(res => {
-                this.categEstabelecimentos = res.data;
+        getCategProdutos() {
+            axios.get('http://127.0.0.1:8000/api/categoria-produto').then(res => {
+                this.categProdutos = res.data;
                 //console.log(this.categEstabelecimentos);
             });
         },
 
-        excluirCategEstabelecimento(categId) {
+        excluirCategProduto(categId) {
 
             if (confirm('Deseja deletar a categoria escolhida?')) {
 
-                axios.delete(`http://127.0.0.1:8000/api/categoria-estabelecimento/${categId}/delete`)
+                axios.delete(`http://127.0.0.1:8000/api/categoria-produto/${categId}/delete`)
                     .then(res => {
                         alert(res.data.message);
-                        this.getCategEstabelecimentos();
+                        this.getCategProdutos();
                     })
                     .catch(function(error) {
                         if (error.response) {

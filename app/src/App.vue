@@ -16,16 +16,25 @@ import HelloWorld from './components/HelloWorld.vue'
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <RouterLink class="nav-link active" to="/">Home</RouterLink>
-              </li>
-              <li class="nav-item">
-                <RouterLink class="nav-link active" to="/about">About Us</RouterLink>
-              </li>  
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">              
               <li class="nav-item">
                 <RouterLink class="nav-link active" to="/categ-estabelecimentos">Categorias de Estabelecimentos</RouterLink>
-              </li>                           
+              </li>  
+              <li class="nav-item">
+                <RouterLink class="nav-link active" to="/">Estabelecimentos</RouterLink>
+              </li> 
+              <li class="nav-item">
+                <RouterLink class="nav-link active" to="/categ-produtos">Categorias de Produtos</RouterLink>
+              </li> 
+              <li class="nav-item">
+                <RouterLink class="nav-link active" to="/">Produtos</RouterLink>
+              </li> 
+              <li class="nav-item">
+                <RouterLink class="nav-link active" to="/">Clientes</RouterLink>
+              </li>     
+              <li class="nav-item">
+                <RouterLink class="nav-link active" to="/">Pedidos</RouterLink>
+              </li>                     
             </ul>            
           </div>
         </div>
